@@ -1,6 +1,7 @@
 #import a couple of libraries to sample random numbers
 from random import random
 from random import randint
+from collections import defaultdict
 
 stakers = []
 vaults = []
@@ -16,6 +17,14 @@ class Staker:
         self.balance = initBalance
     def act(self):
         print("staker " + self.name + " is doing stuff")
+        #start with very simple "degen" behavior
+        if(self.balance >= 1 and random() < 0.5): #random() < 0.5 is a 50:50 fair coin flip
+            #if the coin flip is favorable then stake some tokens
+            amount = randint(1, self.balance)
+            #for now let's assume there's only going to be one vault EXERCISE: choose a vault intellgently
+            vaults[0].deposit(self.name, amount)
+            self.balance = self.balance - amount
+        #TODO: remember to log the history for plotting...
 
 #the other modeled entity is the Vault
 class Vault:
@@ -24,11 +33,15 @@ class Vault:
         self.balance = 0 #assume that there's nothing staked at the beginning
         self.rewards = initRewards
         #remember how much each Staker has deposited
-        self.deposits = []
+        self.deposits = defaultdict(lambda: 0)
 
     def act(self):
         print("vault " + self.name + " is doing stuff")
 
+    def deposit(self, who, amount):
+        self.balance = self.balance + amount
+        self.deposits[who] = self.deposits[who] + amount
+        print("staker " + who + " deposited " + str(amount))
 
 def initStakers():
     print("initializing stakers...")
