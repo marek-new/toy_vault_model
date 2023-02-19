@@ -20,9 +20,43 @@ $I$ is the set or collection of all Stakers such that $i \in I$
 
 ## Relationships
 
+
+### Depositing
+
+When Staker $i$ deposits an amount of tokens $\Delta b_i$ into Vault $j$, state is updated as follows:
+
+The updated amount of stake in $j$ is:
+$S_j^+ = S_j+\Delta b_i$
+The updated deposit balance of stake $j$ is holding for $i$ is:
+$s_{ij}^+=s_{ij}+\Delta b_i$
+
+The updated balance of the staker $i$ is:
+$s_{ij}^+ = s_{ij} - \Delta b_i$
+The maximum amount $i$ can deposit is:
+$\Delta b_i\leq b_i$
+### Withdrawing
+
+When Staker $i$ withdraws an amount of tokens $\Delta s_{ij}$ from Vault $j$, state is updated as follows:
+
+The updated amount of stake in $j$ is:
+$S_j^+ = S_j-\Delta s_{ij}$
+The updated deposit balance of stake $j$ is holding for $i$ is:
+$s_{ij}^+=s_{ij}-\Delta s_{ij}$
+
+The updated balance of the staker $i$ is:
+$s_{ij}^+ = s_{ij} + \Delta s_{ij}$
+The maximum amount $i$ can withdraw is:
+$\Delta s_{ij}\leq s_{ij}$
+
+
 ### Reward distribution
 Assumption: for the time being only consider _one_ reward stream.
 
-The reward $r_{ij}$ for each Staker $i$ from Vault $j$ is 
+The reward at each time step $r_{ij}$ for each Staker $i$ from Vault $j$ is 
 
 $\forall i,\forall j: r_{ij} = \frac{s_{ij}}{S_j}* R_j$
+
+## Behaviors
+
+### Stakers
+TBD.
