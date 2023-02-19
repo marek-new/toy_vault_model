@@ -11,11 +11,11 @@ $I$ is the set or collection of all Stakers such that $i \in I$
 ### Vault
 Each Vault $j$ maintains a deposit balance $s_{ij}$ for each Staker $i$.
 
-Each Vault $j$ holds a total amount of stake $S_j$ deposited by each Staker $i$ such that $\sum s_{ij} = S_j$
+Each Vault $j$ holds a total amount of stake $S_j$ deposited by all Staker $i$ such that $\sum s_{ij} = S_j$
 
 Each Vault has an incoming reward stream $R_j$ that is distributed amongst Stakers each epoch or time step.
 
-$I$ is the set or collection of all Stakers such that $i \in I$
+$J$ is the set or collection of all Vaults such that $j \in J$
 
 
 ## Relationships
