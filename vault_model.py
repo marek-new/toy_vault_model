@@ -40,13 +40,23 @@ def initStakers():
 
 def initVaults():
     print("initializing vaults...")
-    
+    for i in range(0, numVaults):
+        name = "vault"+str(i)
+        rewards = randint(3,9) #choose a random number.. play with this range
+        vault = Vault(name, rewards)
+        vaults.append(vault)
 
 def simulateStakers():
     print("simulating stakers...")
+    #every time step make each staker act
+    for staker in stakers:
+        staker.act() 
 
 def simulateVaults():
     print("simulating vaults...")
+    #every time step make each vault act
+    for vault in vaults:
+        vault.act()
 
 #here will be our main simulation loop
 def main():
