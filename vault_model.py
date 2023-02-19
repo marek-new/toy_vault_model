@@ -1,12 +1,46 @@
+#import a couple of libraries to sample random numbers
+from random import random
+from random import randint
 
 stakers = []
 vaults = []
 
+#global assumptions
+numStakers = 1
+numVaults = 1
+
+#the staker is an Agent - a participant in the simulated system
+class Staker:
+    def __init__(self, name, initBalance):
+        self.name = name
+        self.balance = initBalance
+    def act(self):
+        print("staker " + self.name + " is doing stuff")
+
+#the other modeled entity is the Vault
+class Vault:
+    def __init__(self, name, initRewards):
+        self.name = name
+        self.balance = 0 #assume that there's nothing staked at the beginning
+        self.rewards = initRewards
+        #remember how much each Staker has deposited
+        self.deposits = []
+
+    def act(self):
+        print("vault " + self.name + " is doing stuff")
+
+
 def initStakers():
     print("initializing stakers...")
+    for i in range(0, numStakers):
+        name = "staker"+str(i)
+        balance = randint(1, 10) #choose a random number between 1 and 10
+        staker = Staker(name, balance)
+        stakers.append(staker)
 
 def initVaults():
     print("initializing vaults...")
+    
 
 def simulateStakers():
     print("simulating stakers...")
