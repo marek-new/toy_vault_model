@@ -4,7 +4,6 @@ an educational example for the New Order founder bootcamp
 This is a simple model of Vaults and Stakers earning Yield
 ![System Diagram](./vault_model.001.png?raw=true "System Diagram")
 
-
 ## Definitions
 
 ### Staker
@@ -79,6 +78,10 @@ $\forall i,\forall j: r_{ij} = \frac{s_{ij}}{S_j}* R_j$
 
 ### Stakers
 TODO
+
+# System Goals
+Objective function:
+$MAX \frac{S_j}{R_j}$
 
 # Example run
 Results of one run with 1 vault, 4 stakers, and 10 timesteps
