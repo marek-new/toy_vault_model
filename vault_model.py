@@ -25,6 +25,9 @@ vaults = []
 numStakers = 4
 numVaults = 1
 
+# behavioral parameters
+withdrawalFee = 0.03 # 3%
+
 # this is the number of time steps or epochs that we will run in the model
 timesteps = 10
 
@@ -77,10 +80,11 @@ class Staker:
 
 # the other modeled entity is the Vault
 class Vault:
-    def __init__(self, name, initRewards):
+    def __init__(self, name, initRewards, fee):
         self.name = name
         self.balance = 0  # assume that there's nothing staked at the beginning
         self.rewardRate = initRewards
+        self.withdrawalFee = fee
         # remember how much each Staker has deposited
         self.deposits = defaultdict(lambda: 0)
         # remember how many rewards are accrued to each Staker
@@ -104,8 +108,10 @@ class Vault:
     def withdraw(self, who):
         amount = self.deposits[who]
         self.balance = self.balance - amount
+         #for now, assume the withdrawal fee is being burned
+        amount = amount*(1.0-self.withdrawalFee)
         self.deposits[who] = 0
-        print("Staker " + who + " withdrew: " + str(amount) + " tokens.")
+        print("Staker " + who + " withdrew: " + str(amount) + " tokens.") #TODO: print out the burned amount
         return amount
 
     def rewardShare(self, who):
@@ -136,7 +142,7 @@ def initVaults():
     for i in range(0, numVaults):
         name = "Vault" + str(i)
         rewards = randint(3, 9)  # choose a random number.. play with this range
-        vault = Vault(name, rewards)
+        vault = Vault(name, rewards, withdrawalFee)
         vaults.append(vault)
 
 
