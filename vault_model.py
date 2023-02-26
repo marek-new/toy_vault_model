@@ -7,6 +7,8 @@ excercises (try them in any order you like, some are easier than others):
 #5 introduce a randomized yield instead of constant
 #6 more sophisticated staking behavior than "random degen"
 #7 update the mathematical specification based on your updates to the python model
+#8 add a withdrawal fee to penalize stakers who withdraw
+#9 refactor the code into multiple files that separate out our model classes e.g. staker.py and vault.py
 '''
 
 # import a couple of libraries to sample random numbers
